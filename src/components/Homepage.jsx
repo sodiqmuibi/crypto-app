@@ -4,12 +4,13 @@ import { useGetCryptosQuery } from "../services/cryptoApi"
 import {Link} from 'react-router-dom'
 import CryptoCurrencies from "./Cryptocurrencies"
 import News from "./News"
+import Loader from "./Loader"
 const {Title} = Typography
 const Homepage = () => {
     const { data, isFetching } = useGetCryptosQuery(10)
     const globalStats = data?.data?.stats
     if(isFetching) {
-        return 'Loading....'
+        return <Loader />
     }
 
     return (

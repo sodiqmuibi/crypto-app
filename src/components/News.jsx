@@ -3,6 +3,7 @@ import moment from "moment"
 import { useState } from "react"
 import { useGetNewsQuery } from "../services/NewsApi"
 import { useGetCryptosQuery } from "../services/cryptoApi"
+import Loader from "./Loader"
 
 const {Title, Text } = Typography
 const {Option} = Select
@@ -12,7 +13,7 @@ const News = ({simplified}) => {
     const { data } = useGetCryptosQuery(100)
     const count = simplified ? 6: 12
     const { data: cryptoNews } = useGetNewsQuery({newsCategory, count: count})
-    if(!cryptoNews?.value) return 'loading...'
+    if(!cryptoNews?.value) return <Loader />
     return (
         <Row gutter={[24, 24]}>
             {!simplified && (
